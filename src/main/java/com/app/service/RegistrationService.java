@@ -9,4 +9,8 @@ public interface RegistrationService {
     List<RegistrationEntity> getAll();
     RegistratioResponseModel insert (RegistrationEntity registrationEntity);
 
+    public RegistratioResponseModel getUser(String phone,String password);
+
+    public RegistrationEntity getUserByPhone(String phone);
+
 }

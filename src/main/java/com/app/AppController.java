@@ -47,4 +47,20 @@ public class AppController {
        return registrationService.insert(registrationEntity);
     }
 
+    @PostMapping("/user-login")
+    public RegistratioResponseModel doLogin(@RequestBody RegistrationEntity registrationEntity){
+        return  registrationService.getUser(registrationEntity.getPhone(),registrationEntity.getPassword());
+
+    }
+
+
+    @PostMapping("/user-info")
+    public RegistrationEntity getUserByPhone(@RequestBody RegistrationEntity registrationEntity){
+       // System.out.println("registrationEntity = " + registrationEntity);
+        return  registrationService.getUserByPhone(registrationEntity.getPhone());
+
+    }
+
+
+
 }

@@ -40,4 +40,35 @@ public class RegistrationServiceImpl  implements RegistrationService {
         }
         return  model;
     }
+
+    @Override
+    public RegistratioResponseModel getUser(String phone, String password) {
+
+        RegistrationEntity user = registrationRepo.getUser(phone, password);
+        RegistratioResponseModel ourModel = new RegistratioResponseModel();
+
+        if(user !=null){
+            if(!phone.equals(user.getPhone())){
+                ourModel.setOutCode("1");
+                ourModel.setOutMessage("Phone is invalid");
+            }else if(!password.equals(user.getPassword())){
+                ourModel.setOutCode("1");
+                ourModel.setOutMessage("Password is invalid");
+            }else {
+                ourModel.setOutCode("0");
+                ourModel.setOutMessage("Login Successfull");
+            }
+        }else{
+            ourModel.setOutCode("1");
+            ourModel.setOutMessage("Invaid User Id or password");
+        }
+        return ourModel;
+    }
+
+    @Override
+    public RegistrationEntity getUserByPhone(String phone) {
+        return registrationRepo.getUserByPhone(phone);
+    }
+
+
 }
